@@ -13,18 +13,21 @@
 \usepackage[at]{easylist}
 \usepackage{multicol}
 \usepackage{hyperref}
+\usepackage[cache=false]{minted}
 
 % 以下自作マクロ
-\usepackage{loadsource}
-\usepackage{analysis}
-%
+%\usepackage{loadsource}
+%自作マクロのうち，ここで利用している偏微分だけを定義
+\newcommand{\pfrac}[2]{\cfrac{\partial #1}{\partial #2}}
+
+\newcommand{\lstinputlisting}[1]{\inputminted[mathescape,fontfamily=courier,breaklines,frame=lines]{LaTeX}{#1}}
 
 %\lstset{language={TeX},%言語の設定}
 \newcommand{\bs}{\texttt{\symbol{"5C}}}
 \newcommand{\acc}[1]{\bs #1 \{x\}}
 
 \title{\LaTeX 入門}
-\author{H.T.}
+\author{thvinmei}
 \date{Feb 20, 2015}
 
 \begin{document}
@@ -32,11 +35,6 @@
 
 \titlepage
 \end{frame}
-%\begin{frame}{目次}
-%%\begin{multicols}{3}
-%\tableofcontents
-%%\end{multicols}
-%\end{frame}
 
 \section{\LaTeX とは？}
 \begin{frame}{\LaTeX とは？}
@@ -98,7 +96,7 @@ B4の一年間だと$\cdots$
 
 \subsection*{最低限の構造}
 \begin{frame}{最低限の構造}
-\lstinputlisting{re01.tex}
+\lstinputlisting{import/re01.tex}
 \begin{itemize}
 \item 1行目は文章の書式を設定する部分です．
 \item 3行目が文章の始まりの命令
@@ -112,7 +110,7 @@ B4の一年間だと$\cdots$
 \subsection{Hello,\LaTeX}
 \begin{frame}{Hello,\LaTeX}
 先ほどのファイルに次のように加筆してみましょう．
-\lstinputlisting{re02.tex}
+\lstinputlisting{import/re02.tex}
 これを実行すると，
 \begin{shadebox}
 Hello,\LaTeX !
@@ -130,7 +128,7 @@ Hello,\LaTeX !
 \subsection{セクション}
 \begin{frame}{セクション}
 再び加筆します．
-\lstinputlisting{re03.tex}
+\lstinputlisting{import/re03.tex}
 これを実行するとセクション番号，見出しが表示されます．
 \begin{itemize}
 \item \bs sectionコマンドで節の見出しを設定できます．
@@ -142,7 +140,7 @@ Hello,\LaTeX !
 \subsection{タイトル}
 \begin{frame}{タイトル}
 文章のタイトルや日付を自動で表示させることもできます．
-\lstinputlisting{re04.tex}
+\lstinputlisting{import/re04.tex}
 \end{frame}
 
 \begin{frame}{タイトル}
@@ -155,7 +153,7 @@ Hello,\LaTeX !
 
 \subsection{箇条書き}
 \begin{frame}{箇条書き}
-\lstinputlisting{re05.tex}
+\lstinputlisting{import/re05.tex}
 \end{frame}
 
 \begin{frame}{箇条書き}
@@ -171,7 +169,7 @@ Hello,\LaTeX !
 \subsection{コメントアウト}
 \begin{frame}{コメントアウト}
 ちょっと書き換えてみましょう．
-\lstinputlisting{re06.tex}
+\lstinputlisting{import/re06.tex}
 \end{frame}
 \begin{frame}{コメントアウト}
 これを実行すると箇条書き部分が表示されなくなります．
@@ -195,7 +193,7 @@ Hello,\LaTeX !
 \begin{frame}{ひな形の作成}
 ここからは以下のひな形を書き換えていきます．
 新規作成して，この内容を入力してください．
-\lstinputlisting{math01.tex}
+\lstinputlisting{import/math01.tex}
 2$\sim$4行目のコマンドは数式を美しく出力したり，特殊なコマンドを使えるようにするおまじないです．
 \end{frame}
 
@@ -205,7 +203,7 @@ Hello,\LaTeX !
 %簡単な数式
 \begin{frame}{簡単な数式}
 本文の部分に次のように入力してみましょう．
-\lstinputlisting{math02.tex}
+\lstinputlisting{import/math02.tex}
 \end{frame}
 
 \begin{frame}{簡単な数式}
@@ -232,21 +230,17 @@ f_{(x)} = x^{10}
 
 \subsection{数式の書体}
 \begin{frame}{単位の書体}
-
 数式モード内では自動でイタリック体になってしまうので，単位(ローマン体)を出力するのに命令が必要です．
-
-
 次の命令を実行してみましょう．
-
-\lstinputlisting{math08.tex}
-
+\lstinputlisting{import/math08.tex}
 \end{frame}
 \begin{frame}{数式の書体}
 実行結果はこのようになると思います．
 \begin{shadebox}
 \begin{align}
 x + \mathrm{Const.} \\
-x\,\mathrm{cm^2}\end{align}
+x\,\mathrm{cm^2}
+\end{align}
 \end{shadebox}
 \begin{itemize}
 \item \bs mathrm命令で数式内でローマン体の文字を出力できます．
@@ -257,7 +251,7 @@ x\,\mathrm{cm^2}\end{align}
 \subsection{ベクトル}
 \begin{frame}{ベクトル}
 ベクトルを表示するには，\bs bm命令あるいは\bs vec命令を使います．
-\lstinputlisting{math05.tex}
+\lstinputlisting{import/math05.tex}
 \begin{shadebox}
 \begin{align}
 \bm{F} = m \bm{a} \\
@@ -270,7 +264,7 @@ x\,\mathrm{cm^2}\end{align}
 \subsection{分数，微分}
 \begin{frame}{分数，微分}
 分数は\bs frac命令を使って入力します．
-\lstinputlisting{math03.tex}
+\lstinputlisting{import/math03.tex}
 これを出力すると
 \begin{shadebox}
 \begin{align}
@@ -281,7 +275,7 @@ x\,\mathrm{cm^2}\end{align}
 \end{frame}
 \begin{frame}{分数，微分}
 \bs frac命令を応用すると微分・偏微分も書くことができます．
-\lstinputlisting{math04.tex}
+\lstinputlisting{import/math04.tex}
 これを出力すると
 \begin{shadebox}
 \begin{align}
@@ -303,7 +297,7 @@ x\,\mathrm{cm^2}\end{align}
 \subsection{積分}
 \begin{frame}{積分}
 int命令を使うと積分記号が入力できます．
-\lstinputlisting{math06.tex}
+\lstinputlisting{import/math06.tex}
 \begin{shadebox}
 \begin{align}
 \int x \,dx &= \frac{x^2}{2} + C \\
@@ -320,7 +314,7 @@ int命令を使うと積分記号が入力できます．
 \end{frame}
 \subsection{関数}
 \begin{frame}{関数}
-\lstinputlisting{math07.tex}
+\lstinputlisting{import/math07.tex}
 を実行してみましょう．
 \begin{shadebox}
 \begin{align}
@@ -528,7 +522,7 @@ o & $o$ \\ \hline
 
 
 \begin{frame}[allowdisplaybreaks=4,allowframebreaks=1]{まとめ問題の解答例}
-\lstinputlisting{matome.tex}
+\lstinputlisting{import/matome.tex}
 \end{frame}
 
 
