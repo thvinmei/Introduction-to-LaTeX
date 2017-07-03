@@ -15,20 +15,16 @@
 \usepackage{hyperref}
 \usepackage[cache=false]{minted}
 
-% 以下自作マクロ
-%\usepackage{loadsource}
 %自作マクロのうち，ここで利用している偏微分だけを定義
 \newcommand{\pfrac}[2]{\cfrac{\partial #1}{\partial #2}}
-
+%自作マクロだったものをmintedでラッパー
 \newcommand{\lstinputlisting}[1]{\inputminted[mathescape,fontfamily=courier,breaklines,frame=lines]{LaTeX}{#1}}
 
-%\lstset{language={TeX},%言語の設定}
 \newcommand{\bs}{\texttt{\symbol{"5C}}}
 \newcommand{\acc}[1]{\bs #1 \{x\}}
 
 \title{\LaTeX 入門}
 \author{thvinmei}
-\date{Feb 20, 2015}
 
 \begin{document}
 \begin{frame}
