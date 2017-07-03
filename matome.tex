@@ -1,0 +1,18 @@
+\documentclass[a4paper]{jsarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+
+\begin{document}
+\begin{equation}
+\frac{\partial\vec{v}}{\partialt} + (\vec{v}\cdot\nabla)\vec{v} = - \frac{1}{\rho} \nabla p + \vec{f}
+\end{equation}
+これはEulerの運動方程式とよばれる．
+右辺の二項はそれぞれ粒子の単位質量あたりの面積力および体積力$\vec{f}$を表している．
+力$\vec{f}$はしばしば外力とも呼ばれる．
+上式を成分表示すると
+\begin{equation}
+\frac{\partial}{\partial t} v_i +v_k \frac{\partial}{\partial x_k} v_i = - \frac{1}{\rho} \frac{\partial}{\partial x_i} p + f_i
+\end{equation}
+これが$i$成分の運動方程式である．
+\end{document}

@@ -1,0 +1,560 @@
+\documentclass[slide,dvipdfmx]{beamer}
+\usetheme{Marburg}
+\usecolortheme{beaver}
+\setbeamertemplate{navigation symbols}{}
+\usefonttheme{professionalfonts}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{ascmac}
+\usepackage[at]{easylist}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+% 以下自作マクロ
+\usepackage{loadsource}
+\usepackage{analysis}
+%
+
+%\lstset{language={TeX},%言語の設定}
+\newcommand{\bs}{\texttt{\symbol{"5C}}}
+\newcommand{\acc}[1]{\bs #1 \{x\}}
+
+\title{\LaTeX 入門}
+\author{H.T.}
+\date{Feb 20, 2015}
+
+\begin{document}
+\begin{frame}
+
+\titlepage
+\end{frame}
+%\begin{frame}{目次}
+%%\begin{multicols}{3}
+%\tableofcontents
+%%\end{multicols}
+%\end{frame}
+
+\section{\LaTeX とは？}
+\begin{frame}{\LaTeX とは？}
+\LaTeX (ラテフ，ラテック)は組版ソフト\footnote{簡単に言うと，MS-Word等と同じDTPソフト(コンピュータ上で印刷のための作業をするソフト)の一つです．}です．
+このソフトには，
+\begin{itemize}
+\item フリーソフトなので，無料で利用でき，改良などもできる
+\item 数式を含む文章を綺麗に簡単に作れる
+\item 数式や文章の再利用が簡単にできる
+\end{itemize}
+といったメリットがあります．
+\end{frame}
+
+\begin{frame}{\LaTeX の使い所}
+B4の一年間だと$\cdots$
+\begin{itemize}
+\item 輪講の資料の作成
+\item 卒論の執筆
+\item (発表プレゼンの作成)
+\item (進捗報告プレゼン資料の作成)
+\item (この資料の作成)
+\end{itemize}
+と，色々な場面で使うことになります．
+\end{frame}
+
+
+\begin{frame}{ということで}
+最初の輪講までに，最低限の\LaTeX 操作を覚えましょう！
+\end{frame}
+\section{\LaTeX の準備}
+\begin{frame}{インストール}
+大体のインストール方法は，
+\begin{itemize}
+\item 「\LaTeX2e 美文書作成入門」.奥村晴彦.技術評論社.
+\end{itemize}
+に書かれています．
+
+この本のCD-ROMを使うのが一番簡単でいいと思います．
+また，
+\begin{itemize}
+\item \TeX \,Wiki
+\item[url] \url{http://oku.edu.mie-u.ac.jp/~okumura/texwiki/}
+\end{itemize}
+にも多くの情報が書かれています．
+
+インストールをしないでも\LaTeX を使える
+\begin{itemize}
+\item Cloud \LaTeX
+\item[url] \url{https://cloudlatex.io/}
+\end{itemize}
+というWebサービスもあります．
+\end{frame}
+
+\section{文章の入力}
+\begin{frame}{早速使ってみましょう}
+エディタソフトを起動してみましょう．
+新規作成して，次のページの内容を打ち込んでみましょう．
+\end{frame}
+
+\subsection*{最低限の構造}
+\begin{frame}{最低限の構造}
+\lstinputlisting{re01.tex}
+\begin{itemize}
+\item 1行目は文章の書式を設定する部分です．
+\item 3行目が文章の始まりの命令
+\item 5行目が文章の終わりの命令
+\item 3,5行目の命令の間に本文を書き込みます．
+\end{itemize}
+このままでは真っ白なページが出力されるだけなので，
+文章を少し加えてみましょう．
+\end{frame}
+
+\subsection{Hello,\LaTeX}
+\begin{frame}{Hello,\LaTeX}
+先ほどのファイルに次のように加筆してみましょう．
+\lstinputlisting{re02.tex}
+これを実行すると，
+\begin{shadebox}
+Hello,\LaTeX !
+
+楽しい\LaTeX 生活の始まり!
+\end{shadebox}
+と出力されると思います．
+
+\begin{itemize}
+\item \bs(あるいは￥)の後に続く文字列はコマンドとして特殊な命令と解釈されます．
+\item 連続して2回改行すると段落が変わります．
+\end{itemize}
+\end{frame}
+
+\subsection{セクション}
+\begin{frame}{セクション}
+再び加筆します．
+\lstinputlisting{re03.tex}
+これを実行するとセクション番号，見出しが表示されます．
+\begin{itemize}
+\item \bs sectionコマンドで節の見出しを設定できます．
+\item \bs sectionの他，\bs subsection,\bs subsubsectionという節見出しをつけるコマンドがあります．
+\end{itemize}
+\end{frame}
+
+
+\subsection{タイトル}
+\begin{frame}{タイトル}
+文章のタイトルや日付を自動で表示させることもできます．
+\lstinputlisting{re04.tex}
+\end{frame}
+
+\begin{frame}{タイトル}
+これを実行すると，文章のはじめに\bs title,\bs authorに入力した内容と日付が出力されます．
+\begin{itemize}
+\item \bs title,\bs authorで文章タイトル，著者名を設定できます．
+\item \bs maketitleでタイトル，著者，日付を出力できます．
+\end{itemize}
+\end{frame}
+
+\subsection{箇条書き}
+\begin{frame}{箇条書き}
+\lstinputlisting{re05.tex}
+\end{frame}
+
+\begin{frame}{箇条書き}
+これを実行すると箇条書きが出力されます．
+\begin{itemize}
+\item itemizeで挟まれた場所は箇条書きになる
+\item 項目ごとに\bs item を書く必要がある
+\end{itemize}
+今回は紹介しませんが，箇条書きの記号は数字にしたり，他の記号にしたりすることもできます．
+\end{frame}
+
+
+\subsection{コメントアウト}
+\begin{frame}{コメントアウト}
+ちょっと書き換えてみましょう．
+\lstinputlisting{re06.tex}
+\end{frame}
+\begin{frame}{コメントアウト}
+これを実行すると箇条書き部分が表示されなくなります．
+\begin{itemize}
+\item \% 記号を書くと，それ以降の同じ行の文字列はコメントとして扱われます
+\item コメント部分は出力結果には表示されません．
+\item 文章として表示したくはないけれど，なにかメモしておきたいときなどに便利！
+\end{itemize}
+\end{frame}
+
+\section{数式の入力}
+\begin{frame}{数式の入力}
+
+\begin{itemize}
+\item ここから\LaTeX の数式入力機能を使っていきます．
+\item 数式入力ではコマンドが多数登場します．
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{ひな形の作成}
+ここからは以下のひな形を書き換えていきます．
+新規作成して，この内容を入力してください．
+\lstinputlisting{math01.tex}
+2$\sim$4行目のコマンドは数式を美しく出力したり，特殊なコマンドを使えるようにするおまじないです．
+\end{frame}
+
+\subsection{簡単な数式}
+%別行立て数式
+%累乗，添字
+%簡単な数式
+\begin{frame}{簡単な数式}
+本文の部分に次のように入力してみましょう．
+\lstinputlisting{math02.tex}
+\end{frame}
+
+\begin{frame}{簡単な数式}
+出力結果は，
+\begin{shadebox}
+\begin{align}
+y = ax \\
+f_{(x)} = x^{10}
+\end{align}
+本文の間に数式を$x^n+y^n=z^n$のように書くこともできる．
+\end{shadebox}
+のようになります．
+\begin{itemize}
+\item 数式モードは主に2つの書き方があります．
+\begin{itemize}
+\item 前項2,4行目のequationの命令で文章から独立させて書く．
+\item \$$\sim$\$のような形で文章の中に書きこむ．
+\end{itemize}
+\item 数式の上付き・下付きはそれぞれ，アンダーバーとハットを使えば入力できます．
+\item 数式モード内は基本的にイタリック体になります．
+\end{itemize}
+\end{frame}
+
+
+\subsection{数式の書体}
+\begin{frame}{単位の書体}
+
+数式モード内では自動でイタリック体になってしまうので，単位(ローマン体)を出力するのに命令が必要です．
+
+
+次の命令を実行してみましょう．
+
+\lstinputlisting{math08.tex}
+
+\end{frame}
+\begin{frame}{数式の書体}
+実行結果はこのようになると思います．
+\begin{shadebox}
+\begin{align}
+x + \mathrm{Const.} \\
+x\,\mathrm{cm^2}\end{align}
+\end{shadebox}
+\begin{itemize}
+\item \bs mathrm命令で数式内でローマン体の文字を出力できます．
+\item \bs ,命令はすこしだけスペースを開ける命令です．
+\end{itemize}
+\end{frame}
+
+\subsection{ベクトル}
+\begin{frame}{ベクトル}
+ベクトルを表示するには，\bs bm命令あるいは\bs vec命令を使います．
+\lstinputlisting{math05.tex}
+\begin{shadebox}
+\begin{align}
+\bm{F} = m \bm{a} \\
+\vec{F} = m \vec{a}
+\end{align}
+\end{shadebox}
+\end{frame}
+
+
+\subsection{分数，微分}
+\begin{frame}{分数，微分}
+分数は\bs frac命令を使って入力します．
+\lstinputlisting{math03.tex}
+これを出力すると
+\begin{shadebox}
+\begin{align}
+\frac{a}{b}
+\end{align}
+\end{shadebox}
+のようになります．
+\end{frame}
+\begin{frame}{分数，微分}
+\bs frac命令を応用すると微分・偏微分も書くことができます．
+\lstinputlisting{math04.tex}
+これを出力すると
+\begin{shadebox}
+\begin{align}
+\frac{dy}{dx} \\
+\pfrac{v}{t}
+\end{align}
+\end{shadebox}
+のようになります．
+\end{frame}
+
+\begin{frame}{分数，微分}
+\begin{itemize}
+\item \bs frac\{分子\}\{分母\}で分数を書くことができる
+\item 分数を利用して微分や偏微分を書ける
+\item 偏微分記号は\bs partialで表示できる．
+\end{itemize}
+\end{frame}
+
+\subsection{積分}
+\begin{frame}{積分}
+int命令を使うと積分記号が入力できます．
+\lstinputlisting{math06.tex}
+\begin{shadebox}
+\begin{align}
+\int x \,dx &= \frac{x^2}{2} + C \\
+\int_0^1 x \,dx &= \frac{1}{2}
+\end{align}
+\end{shadebox}
+\end{frame}
+
+\begin{frame}{積分}
+\begin{itemize}
+\item \bs int命令で$\int$の記号が出力されます．
+\item 積分範囲は上付き，下付きと同様に設定することができます．
+\end{itemize}
+\end{frame}
+\subsection{関数}
+\begin{frame}{関数}
+\lstinputlisting{math07.tex}
+を実行してみましょう．
+\begin{shadebox}
+\begin{align}
+log x \\
+\log x
+\end{align}
+\end{shadebox}
+というような出力になると思います．
+logのような関数は見やすい形が命令として用意されています．
+\end{frame}
+
+\begin{frame}{log型関数表}
+主なlog型関数の入出力表です．
+他にも同様の関数は多数あります．
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+入力 & 出力 \\\hline
+\bs log & $\log$ \\\hline
+\bs sin & $\sin$ \\\hline
+\bs cos & $\cos$ \\\hline
+\bs tan & $\tan$ \\\hline
+\bs exp & $\exp$ \\\hline
+\bs lim & $\lim$ \\\hline
+\bs max & $\max$ \\\hline
+\bs min & $\min$ \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+\subsection{ギリシア文字}
+\begin{frame}{ギリシア文字}
+
+ギリシア文字も数式中で特殊な命令を入力することで表示できます．
+
+\begin{multicols}{2}
+
+\begin{tabular}{|c|c|} \hline
+入力 & 出力 \\ \hline
+\bs alpha & $\alpha$ \\ \hline
+\bs beta & $\beta$ \\ \hline
+\bs ganma & $\gamma$ \\ \hline
+\bs delta & $\delta$ \\ \hline
+\bs epsilon & $\epsilon$ \\ \hline
+\bs zeta & $\zeta$ \\ \hline
+\bs eta& $\eta$ \\ \hline
+
+
+\bs theta & $\theta$ \\ \hline
+\bs iota & $\iota$ \\ \hline
+\bs kappa & $\kappa$ \\ \hline
+\bs lambda & $\lambda$ \\ \hline
+\bs mu & $\mu$ \\ \hline
+\end{tabular}
+
+\begin{tabular}{|c|c|} \hline
+入力 & 出力 \\ \hline
+\bs nu & $\nu$ \\ \hline
+\bs xi & $\xi$ \\ \hline
+o & $o$ \\ \hline
+\bs pi & $\pi$ \\ \hline
+\bs rho & $\rho$ \\ \hline
+\bs sigma& $\sigma$ \\ \hline
+\bs tau & $\tau$ \\ \hline
+\bs upsilon& $\upsilon$ \\ \hline
+\bs phi & $\phi$ \\ \hline
+\bs chi & $\chi$ \\ \hline
+\bs psi & $\psi$ \\ \hline
+\bs omega & $\omega$ \\ \hline
+\end{tabular}
+
+\end{multicols}
+
+\end{frame}
+
+
+\begin{frame}{ギリシア文字}
+
+\begin{multicols}{2}
+
+\begin{tabular}{|c|c|} \hline
+入力 & 出力 \\ \hline
+\bs Gamma & $\Gamma$ \\ \hline
+\bs Delta & $\Delta$ \\ \hline
+\bs Theta & $\Theta$ \\ \hline
+\bs Lambda & $\Lambda$ \\ \hline
+\bs Xi & $\Xi$ \\ \hline
+\bs Pi & $\Pi$ \\ \hline
+\bs Sigma & $\Sigma$ \\ \hline
+\bs Upsilon & $\Upsilon$ \\ \hline
+\bs Phi & $\Phi$ \\ \hline
+\bs psi & $\Psi$ \\ \hline
+\bs Omega & $\Omega$ \\ \hline
+\end{tabular}
+
+\begin{tabular}{|c|c|} \hline
+入力 & 出力 \\ \hline
+\bs varepsilon & $\varepsilon$ \\ \hline
+\bs vartheta & $\vartheta$ \\ \hline
+\bs varpi & $\varpi$ \\ \hline
+\bs varrho & $\varrho$ \\ \hline
+\bs varsigma & $\varsigma$ \\ \hline
+\bs varphi & $\varphi$ \\ \hline
+\end{tabular}
+
+\end{multicols}
+
+\end{frame}
+
+
+\subsection{アクセント}
+\begin{frame}{アクセント}
+
+数式の上につけるアクセント用の命令もあります．
+
+\begin{multicols}{2}
+
+\begin{tabular}{|c|c|} \hline
+入力 & 出力 \\ \hline
+\acc{hat} & $\hat{x}$ \\ \hline
+\acc{check} & $\check{x}$ \\ \hline
+\acc{breve} & $\breve{x}$ \\ \hline
+\acc{acute} & $\acute{x}$ \\ \hline
+\acc{grave} & $\grave{x}$ \\ \hline
+\acc{tilde} & $\tilde{x}$ \\ \hline
+\end{tabular}
+
+\begin{tabular}{|c|c|} \hline
+入力 & 出力 \\ \hline
+\acc{bar} & $\bar{x}$ \\ \hline
+\acc{vec} & $\vec{x}$ \\ \hline
+\acc{dot} & $\dot{x}$ \\ \hline
+\acc{ddot} & $\ddot{x}$ \\ \hline
+\acc{dddot} & $\dddot{x}$ \\ \hline
+\acc{ddddot} & $\ddddot{x}$ \\ \hline
+\end{tabular}
+
+\end{multicols}
+
+\end{frame}
+
+
+\subsection{演算子や記号}
+\begin{frame}{演算子や記号}
+
+記号や演算子も命令が定義されています．
+
+\begin{multicols}{2}
+
+\begin{tabular}{|c|c|} \hline
+入力 & 出力 \\ \hline
+\bs times & $\times$ \\ \hline
+\bs div & $\div$ \\ \hline
+\bs cdot & $\cdot$ \\ \hline
+\bs otimes & $\otimes$ \\ \hline
+\bs approx & $\approx$ \\ \hline
+\bs equiv & $\equiv$ \\ \hline
+\bs neq & $\neq$ \\ \hline
+\bs simeq & $\simeq$ \\ \hline
+\end{tabular}
+
+\begin{tabular}{|c|c|} \hline
+入力 & 出力 \\ \hline
+\bs hbar & $\hbar$ \\ \hline
+\bs imath & $\imath$ \\ \hline
+\bs ell & $\ell$ \\ \hline
+\bs Re & $\Re$ \\ \hline
+\bs Im & $\Im$ \\ \hline
+\bs partial & $\partial$ \\ \hline
+\bs infty & $\infty$ \\ \hline
+\bs nabla & $\nabla$ \\ \hline
+\end{tabular}
+\end{multicols}
+\end{frame}
+
+
+\section{まとめ問題}
+\begin{frame}{まとめ問題}
+ここまでの内容を使って打ち込めるちょっとした文章です．
+挑戦してみてください．
+\begin{itembox}[l]{問題}
+次のページの内容を出力できる\LaTeX 文書を作成してください．
+\end{itembox}
+\end{frame}
+
+
+\begin{frame}{まとめ問題}
+
+\begin{shadebox}
+\begin{align*}
+\pfrac{\vec{v}}{t} + (\vec{v}\cdot\nabla)\vec{v} = - \frac{1}{\rho} \nabla p + \vec{f}
+\end{align*}
+これはEulerの運動方程式とよばれる．右辺の二項はそれぞれ粒子の単位質量あたりの面積力および体積力$\vec{f}$を表している．
+力$\vec{f}$はしばしば外力とも呼ばれる．
+上式を成分表示すると
+\begin{align*}
+\pfrac{}{t} v_i +v_k \pfrac{}{x_k} v_i = - \frac{1}{\rho} \pfrac{}{x_i} p + f_i
+\end{align*}
+これが$i$成分の運動方程式である．
+\end{shadebox}
+\begin{quotation}
+「流体力学」．神部勉．裳華房．1995．より
+\end{quotation}
+\end{frame}
+
+
+\begin{frame}[allowdisplaybreaks=4,allowframebreaks=1]{まとめ問題の解答例}
+\lstinputlisting{matome.tex}
+\end{frame}
+
+
+\section{割愛したもの}
+\begin{frame}{割愛したもの}
+今回割愛したけれども，知っていると便利なもの
+\begin{itemize}
+\item プリアンブルの説明
+\item マクロの定義
+\item ページレイアウト
+\item 文献データベース
+\item 相互参照
+\item 図表の挿入
+\end{itemize}
+\end{frame}
+
+\section{ソースコード等}
+\begin{frame}{ソースコード等}
+ソースコードやpdfファイルをevernote上にアップロードしてあります．
+自由に利用してください．
+\begin{itemize}
+\item この資料自体のソースコード
+\item[url] \url{http://bitly.com/texin001}
+\item この資料のpdfファイル等のダウンロードURL
+\item[url] \url{http://bitly.com/texin002}
+\end{itemize}
+\end{frame}
+
+\end{document}
